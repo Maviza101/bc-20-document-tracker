@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <title><%= pageTitle %></title>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1><%= pageTitle %></h1>
+    <p><%= welcomeMessage %></p>
+    <div id="log-in-container">
+      <p>You are not logged in. Please use any option below to log in or sign up</p>
+      <div id="firebaseui-auth-container"></div>
+    </div>
+    <div id="logged-in-container">
+      <p>Redirecting you to your dashboard. If this doesn't happen automatically, please <a href="users/">click here</a>.</p>
+    </div>
   </body>
 </html>
