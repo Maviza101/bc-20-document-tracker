@@ -45,3 +45,6 @@ expressApp.use(function(err, req, res, next) {
   res.render('error');
 });
 
+expressApp.listen(expressApp.get('port'), function() {
+  console.log('Node app is running on port', expressApp.get('port'));
+});
