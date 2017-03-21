@@ -1,0 +1,23 @@
+{
+  "name": "document-tracker-cohort-20",
+  "version": "0.0.1",
+  "description": "A web app for creating, viewing and searching for documents.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maviza101/document-tracker-cohort-20.git"
+  },
+  "keywords": [
+    "andela",
+    "bootcamp-20"
+  ],
+  "author": "Folusho Oladipo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Maviza101/document-tracker-cohort-20/issues"
+  },
+  "homepage": "https://github.com/Maviza101/document-tracker-cohort-20#readme"
+}
