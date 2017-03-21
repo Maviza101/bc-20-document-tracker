@@ -1,6 +1,28 @@
 <!doctype html>
 <html>
   <head>
+    <% include ./partials/header.ejs %>
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script>
+      $(document).ready(function() {
+        // initFirebase() is defined in initFirebase.js and imported with header.ejs.
+        var firebase = initFirebase();
+        firebase.auth().onAuthStateChanged(function(user){
+          console.log(user);
+        });
+      
+        $('#sign-out').on('click', function() {
+          firebase.auth().signOut()
+            .then(function() {
+              $('#sign-out-status').text('You have signed out.');
+            })
+            .catch(function(error) {
+              // An error happened.
+            });
+        });
+      });
+    </script>
   </head>
   <body>
     
