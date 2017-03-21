@@ -18,3 +18,7 @@ expressApp.use(express.static(path.join(__dirname, '/public')));
 // view engine setup
 expressApp.set('views', path.join(__dirname, 'views'));
 expressApp.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//expressApp.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+expressApp.use(logger('dev'));
