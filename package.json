@@ -23,6 +23,8 @@
   "dependencies": {
     "express": "4.13.3",
     "ejs": "2.4.1",
-    "firebase": "^3.7.2"
+    "firebase": "^3.7.2",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.2"
   }
 }
