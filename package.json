@@ -2,7 +2,7 @@
   "name": "document-tracker-cohort-20",
   "version": "0.0.1",
   "description": "A web app for creating, viewing and searching for documents.\"",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
