@@ -15,6 +15,40 @@
         <h1><%= welcomeMessage %></h1>
         <div id="create-document-form-container">
           <form id="create-document-form">
+            <ul>
+              <li>
+                <input id="document-title" type="text" placeholder="Title">
+                <p id="document-title-error" class="hidden error-msg">Invalid title. Title must have at least 4 characters.</p>
+              </li>
+              <li>
+                <input id="document-url" type="text" placeholder="URL"/>
+                <p id="document-url-error" class="hidden error-msg">Invalid URL.</p>
+              </li>
+              <li>
+                <select id="document-department">
+                  <option value="default">Choose a department</option>
+                  <option value="success">Success</option>
+                  <option value="learning">Learning</option>
+                  <option value="operations">Operations</option>
+                  <option value="finance">Finance</option>
+                  <option value="recruitment">Recruitment</option>
+                  <option value="sales">Sales</option>
+                  <option value="">Marketing</option>
+                </select>
+                <p id="document-department-error" class="hidden error-msg">Please choose a department.</p>
+              </li>
+              <li>
+                <p>Please enter a list of tags. Separate each of them with commas.</p>
+                <input id="document-tags" type="text" placeholder="tag 1, tag 2"/>
+                <p id="document-tags-error" class="hidden error-msg">Please enter one or more tags.</p>
+              </li>
+              <li>
+                <input id="create-document-btn" type="button" value="Create" class="desired-action-btn"/>
+              </li>
+              <li>
+                <p id="create-document-error"></p>
+              </li>
+            </ul>
           </form>
         </div>
       </main>
