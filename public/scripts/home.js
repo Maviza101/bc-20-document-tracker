@@ -37,7 +37,7 @@ $(document).ready(function() {
         window.location.replace('/users');
       }
     });
-    /*
+    /* // TODO: Use event.preventDefault() in all click event.
     // For the sign in/register with email section.
     $('.tabs').on('click', 'li a', function(e) {
     e.preventDefault();
