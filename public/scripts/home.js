@@ -16,7 +16,14 @@ $(document).ready(function() {
         var uiConfig = {
           signInSuccessUrl: 'http://localhost:5000/users',
           signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            {
+              provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+              scopes: [
+                'public_profile',
+                'email'
+              ]
+            }
           ]
         };
 
