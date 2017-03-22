@@ -15,6 +15,100 @@
     <div id="sign-in-container" class="hidden">
       <p>You are not signed in. Please use any option below to sign in or register.</p>
       <div id="firebaseui-auth-container"></div>
+      <div id="email-auth-container">
+        <button id="email-auth-start-btn">Sign in with email and password</button>
+        <div id="email-auth-forms-container" class="hidden">
+          <div class="flat-form">
+            <ul class="tabs">
+              <li>
+                <a href="#sign-in" class="active">Sign In</a>
+              </li>
+              <li>
+                <a href="#register">Register</a>
+              </li>
+              <li>
+                <a href="#reset">Reset Password</a>
+              </li>
+            </ul>
+            <div id="sign-in" class="form-action show">
+              <h1>Your wish. Granted.</h1>
+              <p>Please fill your email and password into the form below to sign in. The genie is waiting. (And all fields are required.)</p>
+              <form>
+                <ul>
+                  <li>
+                    <input id="sign-in-email" type="email" placeholder="Email" />
+                    <p id="sign-in-email-error" class="hidden error-msg">Error. Invalid email.</p>
+                  </li>
+                  <li>
+                    <input id="sign-in-password" type="password" placeholder="Password" />
+                    <p id="sign-in-password-error" class="hidden error-msg">Password not 
+                      strong enough. It must be at least 8 characters long and include 2 upper case letters, 
+                      two symbols and two numbers.</p>
+                  </li>
+                  <li>
+                    <input id="email-auth-sign-in-btn" type="button" value="Sign in" class="btn desired-action-btn" />
+                    <input type="button" value="Cancel" class="btn cancel-email-auth" />
+                    <img id="email-sign-in-loading-img" src="/images/loading.gif" class="hidden inline-img" />
+                  </li>
+                  <li id="email-auth-wrong-account-details" class="hidden error-msg">
+                    <p>Error. We could not find an account with the username and/or password you entered.</p>
+                  </li>
+                </ul>
+              </form>
+            </div>
+            <div id="register" class="form-action hide">
+              <h1>Join the Party.</h1>
+              <p>Want to manage your documents with more pizzazz? Fill the form below to begin.</p>
+              <form>
+                <ul>
+                  <li>
+                    <input id="register-email" type="email" placeholder="Email" />
+                    <p id="register-email-error" class="hidden error-msg">Error. Invalid email.</p>
+                  </li>
+                  <li>
+                    <input id="register-full-name" type="text" placeholder="Full name" />
+                    <p id="register-full-name-error" class="hidden error-msg">Invalid name. Name must be at least 4 characters long and contain letters only.</p>
+                  </li>
+                  <li>
+                    <input id="register-password" type="password" placeholder="Password" />
+                    <p id="register-password-error" class="hidden error-msg">Password not 
+                      strong enough. It must be at least 8 characters long and include 2 upper case letters, 
+                      two symbols and two numbers.</p>
+                  </li>
+                  <li>
+                    <input id="email-auth-register-btn" type="button" value="Register" class="btn desired-action-btn" />
+                    <input type="button" value="Cancel" class="btn cancel-email-auth" />
+                    <img id="register-loading-img" src="/images/loading.gif" class="hidden" />
+                  </li>
+                  <li id="email-auth-wrong-account-details" class="hidden error-msg">
+                    <p>Error. We could not create that account with the username and/or password you entered.</p>
+<!--                    <p>Error. We could not create that account with the username and/or password you entered.</p>-->
+                  </li>
+                </ul>
+              </form>
+            </div>
+            <div id="reset" class="form-action hide">
+              <h1>I forgot...</h1>
+              <p>Have you forgotten your password? Please enter your account's email below and we'll send you a password reset link.</p>
+              <form>
+                <ul>
+                  <li>
+                    <input type="email" placeholder="Email" />
+                  </li>
+                  <li>
+                    <input id="email-auth-reset-password-btn" type="button" value="Reset" class="btn desired-action-btn" />
+                    <input type="button" value="Cancel" class="btn cancel-email-auth" />
+                  </li>
+                </ul>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="signed-in-container" class="hidden">
+      <p>Redirecting you to your dashboard. If this doesn't happen automatically, please <a href="/users">click here</a>.</p>
+    
     </div>
     <div id="logged-in-container" class="hidden">
       <p>Redirecting you to your dashboard. If this doesn't happen automatically, please <a href="users/">click here</a>.</p>
