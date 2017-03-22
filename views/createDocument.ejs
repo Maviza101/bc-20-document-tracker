@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= pageTitle %></title>
+    <% include ./partials/header.ejs %>
+  </head>
+  <body>
+    <nav>
+      <button id="sign-out">Sign out</button>
+      <p id="sign-out-status"></p>
+    </nav>
+    <div id="wrapper">
+      <main>
+        <h1><%= welcomeMessage %></h1>
+        <div id="create-document-form-container">
+          <form id="create-document-form">
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
