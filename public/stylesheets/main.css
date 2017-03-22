@@ -8,7 +8,7 @@ ul li {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 .hidden {
@@ -24,5 +24,11 @@ a {
 }
 
 .inline-img {
+  display: inline-block;
   vertical-align: bottom;
+}
+
+.desired-action-btn {
+  background: #3359df;
+  color: #ffffff;
 }
