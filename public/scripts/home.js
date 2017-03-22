@@ -30,7 +30,7 @@ $(document).ready(function() {
         window.location.replace('/users');
       }
     });
-    
+    /*
     // For the sign in/register with email section.
     $('.tabs').on('click', 'li a', function(e) {
     e.preventDefault();
@@ -62,7 +62,7 @@ $(document).ready(function() {
       $('#email-auth-start-btn').show(500);
     });
   
-    /* Validation functions */
+    // Validation functions 
     function isValidEmail(email) {
       // Trivial case. The shortest email is of the form a@p.cr, which is 6 chars long.
       if (email.length < 7) {
@@ -89,9 +89,9 @@ $(document).ready(function() {
       }
       return true;
     }
-    /* End of validation functions */
+    // End of validation functions
   
-    /* Sign in with email and password */
+    // Sign in with email and password 
     $('#email-auth-sign-in-btn').on('click', this, function() {
       $('#email-auth-wrong-account-details').hide();
       var emailInput = $('#sign-in-email');
@@ -136,10 +136,10 @@ $(document).ready(function() {
       });
       
     });
-    /* End of sign in with email and password. */
+    // End of sign in with email and password. 
   
     $('#email-auth-register-btn').on('click', this, function() {
       
     });
-
+*/
   });
