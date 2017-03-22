@@ -8,6 +8,7 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var createDocument = require('./routes/createDocument');
 
 var expressApp = express();
 
@@ -26,6 +27,7 @@ expressApp.use(logger('dev'));
 // Respond to various routes.
 expressApp.use('/', index);
 expressApp.use('/users', users);
+expressApp.use('/createDocument', createDocument);
 
 // catch 404 and forward to error handler
 expressApp.use(function(req, res, next) {
