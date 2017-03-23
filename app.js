@@ -9,6 +9,7 @@ var logger = require('morgan');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var createDocument = require('./routes/createDocument');
+var search = require('./routes/search');
 
 var expressApp = express();
 
@@ -28,6 +29,7 @@ expressApp.use(logger('dev'));
 expressApp.use('/', index);
 expressApp.use('/users', users);
 expressApp.use('/createDocument', createDocument);
+expressApp.use('/search', search);
 
 // catch 404 and forward to error handler
 expressApp.use(function(req, res, next) {
