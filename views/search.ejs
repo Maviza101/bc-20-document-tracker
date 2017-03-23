@@ -75,10 +75,34 @@
             <div id="keyword-search-results" class="tab-pane fade">
               <h3>Search by keyword</h3>
               <p>Looking for a document with a certain tag? Fill the form below.</p>
+              <form>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="keyword-search" class="col-2 col-form-label">Search</label>
+                    <div class="col-4">
+                      <input class="form-control" type="search" placeholder="Enter keyword" id="keyword-search">
+                    </div>
+                  </div>
+                </div>
+                <input id="search-keyword-btn" class="btn btn-primary" type="button" value="Search">
+              </form>
+              <img src="/images/loading.gif" />
             </div>
             <div id="title-search-results" class="tab-pane fade">
               <h3>Search by title</h3>
               <p>Oh, you know the title? Fill the form below to search for the appropriate document(s).</p>
+              <form>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="title-search" class="col-2 col-form-label">Search</label>
+                    <div class="col-4">
+                      <input class="form-control" type="search" placeholder="Enter title" id="title-search">
+                    </div>
+                  </div>
+                </div>
+                <input id="search-title-btn" class="btn btn-primary" type="button" value="Search">
+              </form>
+              <img src="/images/loading.gif" />
             </div>
           </div>
         </div>
