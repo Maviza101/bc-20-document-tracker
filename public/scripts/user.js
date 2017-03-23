@@ -19,5 +19,10 @@ $(document).ready(function() {
         // An error happened.
       });
   });
+  
+  $('#create-document').on('click', this, function(event) {
+    event.preventDefault();
+    window.location.href = '/createDocument';
+  });
 });
     

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= pageTitle %></title>
+    <% include ./partials/header.ejs %>
+    <script type="text/javascript" src="/scripts/createDocument.js"></script>
+  </head>
+  <body>
+    <nav>
+      <button id="sign-out">Sign out</button>
+      <p id="sign-out-status"></p>
+    </nav>
+    <div id="wrapper">
+      <main>
+        <h1><%= welcomeMessage %></h1>
+        <div id="create-document-form-container">
+          <form id="create-document-form">
+            <ul>
+              <li>
+                <input id="document-title" type="text" placeholder="Title">
+                <p id="document-title-error" class="hidden error-msg">Invalid 
+                  title. Title must have at least 4 characters that are not whitespace.
+                </p>
+              </li>
+              <li>
+                <input id="document-url" type="text" placeholder="URL"/>
+                <p id="document-url-error" class="hidden error-msg">Invalid URL.</p>
+              </li>
+              <li>
+                <div id="document-departments-container">
+                  <p id="document-department-msg">Please choose one or more departments.</p>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="success"> Success
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="learning"> Learning
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="operations"> Operations
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="finance"> Finance
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="recruitment"> Recruitment
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="sales"> Sales
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" class="single-department" value="marketing"> Marketing
+                    </label>
+                  </div>
+                </div>
+                <p id="document-department-error" class="hidden error-msg">Please 
+                  choose one or more departments.
+                </p>
+              </li>
+              <li>
+                <p>Please enter a list of tags. Separate each of them with commas.</p>
+                <input id="document-keywords" type="text" placeholder="tag 1, tag 2"/>
+                <p id="document-keywords-error" class="hidden error-msg">Please enter one or more tags.</p>
+              </li>
+              <li>
+                <input id="create-document-btn" type="button" value="Create" class="desired-action-btn"/>
+              </li>
+              <li>
+                <p id="create-document-error"></p>
+              </li>
+            </ul>
+          </form>
+          <div id="create-document-success-container" class="col-xs-4 col-sm-4 alert alert-success">
+            <p id="create-document-success"><strong>Eezy peezy!</strong> Your document has been created.</p>
+          </div>
+          <div id="create-document-error-container" class="col-xs-4 col-sm-4 alert alert-error">
+            <p id="create-document-error">Failed. Try again.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
