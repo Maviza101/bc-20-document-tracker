@@ -1,5 +1,3 @@
-'use strict';
-
 $(document).ready(function() {
     // Reusable variables.
     var firebaseUiContainer = $('#firebaseui-auth-container');
@@ -9,9 +7,20 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function(user) {
       var signInContainer = $('#sign-in-container');
       var signedInContainer = $('#signed-in-container');
-      if (user === null) {
+      
+      if (user) {
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', uiConfig);
+        
+        signInContainer.hide();
+        signedInContainer.show();
+        
+        // Redirect signed in users to their dashboard.
+        window.location.replace('/users');
+      } else {
         signedInContainer.hide();
         signInContainer.show();
+        
         // FirebaseUI config.
         var uiConfig = {
           signInSuccessUrl: 'http://localhost:5000/users',
@@ -26,19 +35,12 @@ $(document).ready(function() {
             }
           ]
         };
-
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start('#firebaseui-auth-container', uiConfig);
-      }
-      else {
-        signInContainer.hide();
-        signedInContainer.show();
-        // Redirect signed in users to their dashboard.
-        window.location.replace('/users');
       }
     });
-    /* // TODO: Use event.preventDefault() in all click event.
-    // For the sign in/register with email section.
+  
+    /* 
+    // TODO: Use e.preventDefault() in all click event.
+    // Code for "sign in/register with email" functionality.
     $('.tabs').on('click', 'li a', function(e) {
     e.preventDefault();
     var currentTabLink = $(this);
