@@ -44,19 +44,11 @@ $(document).ready(function() {
     return correctUrlPatter.test(trimmedUrl);    
   }
   
-  function isValidDepartment(department) {
-    switch (department) {
-      case 'success':
-      case 'learning':
-      case 'operations':
-      case 'finance':
-      case 'recruitment':
-      case 'sales':
-      case 'marketing':
-        return true;
-        break;
+  function isValidDepartments(departments) {
+    if (departments.length < 1) {
+      return false;
     }
-    return false;
+    return true;
   }
   
   function isValidKeywords(keywords) {
@@ -96,14 +88,19 @@ $(document).ready(function() {
       $('#document-url-error').hide();      
     }
     
-    var departmentInput = $('#document-department');
-    var department = departmentInput.val();
-    if (!isValidDepartment(department)) {
-      departmentInput.attr('style', 'outline: 2px solid #ff2222');
+    var departmentInputs = $('input:checkbox:checked');
+    var departments = [];
+    departmentInputs.each(function() {
+      departments.push($(this).val());
+    });
+    if (!isValidDepartments(departments)) {
+      //$('#document-department-msg').removeAttr('style', 'outline');
+      $('#document-department-msg').attr('style', 'outline: 2px solid #ff2222');
       $('#document-department-error').show();
       return;
     } else {
-      departmentInput.attr('style', 'outline: 1px solid #22ff22');
+      //$('#document-department-msg').removeAttr('style', 'outline');
+      $('#document-department-msg').attr('style', 'outline: 1px solid #22ff22');
       $('#document-department-error').hide();      
     }
     
@@ -135,10 +132,11 @@ $(document).ready(function() {
     }
     
     var currentTimeMillis = Date.now();
-    createDocument(database, currentTimeMillis, currentUserId, title, url, department, keywords);
+    createDocument(database, currentTimeMillis, currentUserId, title, url, departments, keywords);
   });
   
-  function createDocument(targetDatabase, creationTime, userId, title, url, department, keywords) {
+  function createDocument(targetDatabase, creationTime, userId, title, url, departmentList, keywords) {
+    //TODO: add an fail listener to the pushes.
     var data = {
       creation_time: creationTime,
       uid: userId,
@@ -147,12 +145,25 @@ $(document).ready(function() {
       keywords: keywords
     };
     
-    var departmentRef = targetDatabase.ref('documents/' + department);
-    departmentRef.push(data);
+    for (var i = 0; i < departmentList.length; i++) {
+      var singleDepartment = departmentList[i];
+      var departmentRef = targetDatabase.ref('documents/' + singleDepartment);
+      departmentRef.push(data);
+    }
     
     // Reserve the 'users/' field for storing user profile details only.
     var usersRef = targetDatabase.ref('userDocuments/' + userId);
     usersRef.push(data);
+    
+    var titlesRef = targetDatabase.ref('titles/' + title);
+    usersRef.push(data);
+    
+    var keywordsList = keywords.split(',');
+    for (var i = 0; i < keywordsList.length; i++) {
+      var keywordLower = keywordsList[i].toLowerCase();
+      var keywordsRef = targetDatabase.ref('keywords/' + keywordLower);
+      keywordsRef.push(data);
+    }
   }
   
 });
