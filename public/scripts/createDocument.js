@@ -94,12 +94,10 @@ $(document).ready(function() {
       departments.push($(this).val());
     });
     if (!isValidDepartments(departments)) {
-      //$('#document-department-msg').removeAttr('style', 'outline');
       $('#document-department-msg').attr('style', 'outline: 2px solid #ff2222');
       $('#document-department-error').show();
       return;
     } else {
-      //$('#document-department-msg').removeAttr('style', 'outline');
       $('#document-department-msg').attr('style', 'outline: 1px solid #22ff22');
       $('#document-department-error').hide();      
     }
@@ -136,7 +134,7 @@ $(document).ready(function() {
   });
   
   function createDocument(targetDatabase, creationTime, userId, title, url, departmentList, keywords) {
-    //TODO: add an fail listener to the pushes.
+    //TODO: add a fail listener to the pushes.
     var data = {
       creation_time: creationTime,
       uid: userId,
