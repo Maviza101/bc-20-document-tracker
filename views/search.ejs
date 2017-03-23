@@ -2,6 +2,8 @@
 <html>
   <head>
     <% include ./partials/header.ejs %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/scripts/search.js"></script>
   </head>
   <body>
     <nav>
@@ -15,12 +17,71 @@
         <div id="">
           <p id="">Please specify your search in the field below.</p>
           <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Profile</a></li>
-            <li role="presentation"><a href="#">Messages</a></li>
+            <li class="active">
+              <a data-toggle="tab" href="#department-search-results">Department</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#keyword-search-results">Keyword</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#title-search-results">Title</a>
+            </li>
           </ul>
+
+          <div class="tab-content">
+            <div id="department-search-results" class="tab-pane fade in active">
+              <h3>Search by department</h3>
+              <p>"I need documents that belong to Department X..." Choose the department below and we'll give you results.</p>
+              <form>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="success" checked> Success
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="learning"> Learning
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="operations"> Operations
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="finance"> Finance
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="recruitment"> Recruitment
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="success"> Success
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="single-department" class="single-department" value="marketing"> Marketing
+                  </label>
+                </div>
+                <input id="search-department-btn" class="btn btn-primary" type="button" value="Search">
+              </form>
+              <img src="/images/loading.gif" />
+            </div>
+            <div id="keyword-search-results" class="tab-pane fade">
+              <h3>Search by keyword</h3>
+              <p>Looking for a document with a certain tag? Fill the form below.</p>
+            </div>
+            <div id="title-search-results" class="tab-pane fade">
+              <h3>Search by title</h3>
+              <p>Oh, you know the title? Fill the form below to search for the appropriate document(s).</p>
+            </div>
+          </div>
         </div>
-        <div id="search-results-container"></div>
       </main>
     </div>
   </body>
