@@ -139,7 +139,6 @@ $(document).ready(function() {
   });
   
   function createDocument(targetDatabase, creationTime, userId, title, url, department, keywords) {
-    var ref = targetDatabase.ref('documents/' + department);
     var data = {
       creation_time: creationTime,
       uid: userId,
@@ -148,7 +147,12 @@ $(document).ready(function() {
       keywords: keywords
     };
     
-    ref.push(data);
+    var departmentRef = targetDatabase.ref('documents/' + department);
+    departmentRef.push(data);
+    
+    // Reserve the 'users/' field for storing user profile details only.
+    var usersRef = targetDatabase.ref('userDocuments/' + userId);
+    usersRef.push(data);
   }
   
 });
