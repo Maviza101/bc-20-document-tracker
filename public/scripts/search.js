@@ -15,7 +15,6 @@ $(document).ready(function() {
   $('#search-department-btn').on('click', this, function() {
     var departmentInput = $('.single-department:radio:checked');
     var department = departmentInput.val();
-    console.log(department);
     
     var departmentRef = database.ref('documents/' + department);
     database.ref('documents/' + department).once('value', function(snapshot) {
