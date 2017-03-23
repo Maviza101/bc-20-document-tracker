@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 $(document).ready(function() {
   var firebase = initFirebase();
@@ -129,39 +129,107 @@ $(document).ready(function() {
       };
     }
     
+    $(this).hide();
+    $('#create-document-success-container').hide();
+    $('#create-document-error-container').hide();
     var currentTimeMillis = Date.now();
-    createDocument(database, currentTimeMillis, currentUserId, title, url, departments, keywords);
+    createDocument(database, currentTimeMillis, currentUserId, title, url, departments, keywords.split(','));
   });
   
-  function createDocument(targetDatabase, creationTime, userId, title, url, departmentList, keywords) {
+  function createDocument(targetDatabase, creationTime, userId, title, url, departmentList, keywordsList) {
     //TODO: add a fail listener to the pushes.
+    
+    // update user docs + update titles + update departments + update keywords.
+    var totalJobsCount = 1 + 1 + departmentList.length + keywordsList.length;
+    var currentJobsCount = 0;
+    
     var data = {
       creation_time: creationTime,
       uid: userId,
       title: title,
       url: url,
-      keywords: keywords
+      keywords: encodeURIComponent(keywordsList.join(','))
     };
     
-    for (var i = 0; i < departmentList.length; i++) {
+    for (var i = 0; i < departmentList.length; i++) {      
       var singleDepartment = departmentList[i];
-      var departmentRef = targetDatabase.ref('documents/' + singleDepartment);
-      departmentRef.push(data);
+      var departmentRef = targetDatabase.ref('documents/' + encodeURIComponent(singleDepartment));
+      departmentRef.push(data)
+        .then(function() {
+        console.log('done');
+        currentJobsCount++;
+        showSuccessMsg(totalJobsCount, currentJobsCount);
+      })
+        .catch(function(error) {
+        showErrorMsg();
+        return;
+      });
     }
     
     // Reserve the 'users/' field for storing user profile details only.
-    var usersRef = targetDatabase.ref('userDocuments/' + userId);
-    usersRef.push(data);
+    var usersRef = targetDatabase.ref('userDocuments/' + encodeURIComponent(userId));
+    usersRef.push(data)
+        .then(function() {
+        console.log('done');
+        currentJobsCount++;
+        showSuccessMsg(totalJobsCount, currentJobsCount);
+      })
+        .catch(function(error) {
+        showErrorMsg();
+        return;
+      });;
     
-    var titlesRef = targetDatabase.ref('titles/' + title);
-    usersRef.push(data);
+    var titlesRef = targetDatabase.ref('titles/' + encodeURIComponent(title));
+    console.log(usersRef.push(data));
+    usersRef.push(data)
+        .then(function() {
+        console.log('done');
+        currentJobsCount++;
+        showSuccessMsg(totalJobsCount, currentJobsCount);
+      })
+        .catch(function(error) {
+        showErrorMsg();
+        return;
+      });
     
-    var keywordsList = keywords.split(',');
     for (var i = 0; i < keywordsList.length; i++) {
       var keywordLower = keywordsList[i].toLowerCase();
-      var keywordsRef = targetDatabase.ref('keywords/' + keywordLower);
-      keywordsRef.push(data);
+      var keywordsRef = targetDatabase.ref('keywords/' + encodeURIComponent(keywordLower));
+      keywordsRef.push(data)
+        .then(function() {
+        console.log('done');
+        currentJobsCount++;
+        showSuccessMsg(totalJobsCount, currentJobsCount);
+      })
+        .catch(function(error) {
+        showErrorMsg();
+        return;
+      });
     }
+  }
+  
+  function showSuccessMsg(totalCount, currentCount) {
+    if (totalCount === currentCount) {
+      console.log('completed');
+      $('#create-document-btn').show();
+      $('#create-document-success-container').show();
+      invalidateCreateDocForm();
+    } else {
+      return;
+    }
+  }
+  
+  function showErrorMsg() {
+    $('#create-document-error-container').show();
+  }
+  
+  function invalidateCreateDocForm() {
+    $('#document-title').val('');
+    $('#document-url').val('');
+    $('#document-keywords').val('');
+    $('input:checkbox:checked').each(function() {
+      $(this).attr('checked', false); 
+    });
   }
   
 });

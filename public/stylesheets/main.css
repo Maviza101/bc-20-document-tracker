@@ -32,3 +32,8 @@ a {
   background: #3359df;
   color: #ffffff;
 }
+
+#create-document-success-container,
+#create-document-error-container {
+  display: none;
+}
