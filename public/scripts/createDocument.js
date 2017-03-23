@@ -156,54 +156,34 @@ $(document).ready(function() {
       var departmentRef = targetDatabase.ref('documents/' + encodeURIComponent(singleDepartment));
       departmentRef.push(data)
         .then(function() {
-        console.log('done');
-        currentJobsCount++;
-        showSuccessMsg(totalJobsCount, currentJobsCount);
-      })
-        .catch(function(error) {
-        showErrorMsg();
-        return;
+          currentJobsCount++;
+          showSuccessMsg(totalJobsCount, currentJobsCount);
       });
     }
     
     // Reserve the 'users/' field for storing user profile details only.
     var usersRef = targetDatabase.ref('userDocuments/' + encodeURIComponent(userId));
     usersRef.push(data)
-        .then(function() {
-        console.log('done');
+      .then(function() {
         currentJobsCount++;
         showSuccessMsg(totalJobsCount, currentJobsCount);
-      })
-        .catch(function(error) {
-        showErrorMsg();
-        return;
-      });;
+    });
     
     var titlesRef = targetDatabase.ref('titles/' + encodeURIComponent(title));
     console.log(usersRef.push(data));
     usersRef.push(data)
-        .then(function() {
-        console.log('done');
+      .then(function() {
         currentJobsCount++;
         showSuccessMsg(totalJobsCount, currentJobsCount);
-      })
-        .catch(function(error) {
-        showErrorMsg();
-        return;
-      });
+    });
     
     for (var i = 0; i < keywordsList.length; i++) {
       var keywordLower = keywordsList[i].toLowerCase();
       var keywordsRef = targetDatabase.ref('keywords/' + encodeURIComponent(keywordLower));
       keywordsRef.push(data)
         .then(function() {
-        console.log('done');
-        currentJobsCount++;
-        showSuccessMsg(totalJobsCount, currentJobsCount);
-      })
-        .catch(function(error) {
-        showErrorMsg();
-        return;
+          currentJobsCount++;
+          showSuccessMsg(totalJobsCount, currentJobsCount);
       });
     }
   }
