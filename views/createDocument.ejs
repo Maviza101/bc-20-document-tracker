@@ -7,63 +7,102 @@
     <script type="text/javascript" src="/scripts/createDocument.js"></script>
   </head>
   <body>
-    <nav>
-      <button id="sign-out">Sign out</button>
-      <p id="sign-out-status"></p>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button id="sign-out" class="btn btn-default navbar-btn">Sign out</button>
+          </li>
+          <li>
+            <p id="sign-out-status"></p>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <div id="wrapper">
-      <main>
+    <div id="wrapper" class="row">
+      <aside class="col-md-2">
+        <br>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="/users">Dashboard</a></li>
+          <li><a href="/createDocument">Create Document</a></li>
+          <li><a href="/search">Search</a></li>
+        </ul>
+      </aside>
+      <main class="col-md-8">
         <h1><%= welcomeMessage %></h1>
+        <p class="alert alert-warning">*All fields are required.</p>
         <div id="create-document-form-container">
           <form id="create-document-form">
             <ul>
               <li>
-                <input id="document-title" type="text" placeholder="Title">
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">
+                  </label>
+                    <input id="document-title" type="text" placeholder="Title" class="form-control">
+                </div>
                 <p id="document-title-error" class="not-shown error-msg">Invalid 
                   title. Title must have at least 4 characters that are not whitespace.
                 </p>
               </li>
               <li>
-                <input id="document-url" type="text" placeholder="URL"/>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">
+                  </label>
+                    <input id="document-url" type="text" placeholder="URL" class="form-control"/>
+                </div>
                 <p id="document-url-error" class="not-shown error-msg">Invalid URL.</p>
               </li>
               <li>
                 <div id="document-departments-container">
                   <p id="document-department-msg">Please choose one or more departments.</p>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="success"> Success
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="success"> Success
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="learning"> Learning
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="learning"> Learning
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="operations"> Operations
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="operations"> Operations
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="finance"> Finance
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="finance"> Finance
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="recruitment"> Recruitment
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="recruitment"> Recruitment
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="sales"> Sales
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="sales"> Sales
+                      </label>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" class="single-department" value="marketing"> Marketing
-                    </label>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="single-department" value="marketing"> Marketing
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <p id="document-department-error" class="not-shown error-msg">Please 
@@ -71,12 +110,16 @@
                 </p>
               </li>
               <li>
-                <p>Please enter a list of tags. Separate each of them with commas.</p>
-                <input id="document-keywords" type="text" placeholder="tag 1, tag 2"/>
+                <div class="form-group">
+                  <label class="col-lg-12 control-label">Please enter a list of 
+                    tags. Separate each of them with commas.
+                  </label>
+                    <input id="document-keywords" type="text" placeholder="tag 1, tag 2" class="form-control"/>
+                </div>
                 <p id="document-keywords-error" class="not-shown error-msg">Please enter one or more tags.</p>
               </li>
               <li>
-                <input id="create-document-btn" type="button" value="Create" class="desired-action-btn"/>
+                <input id="create-document-btn" type="button" value="Create" class="btn btn-primary"/>
               </li>
               <li>
                 <p id="create-document-error"></p>
@@ -86,8 +129,15 @@
           <div id="create-document-success-container" class="col-xs-4 col-sm-4 alert alert-success">
             <p id="create-document-success"><strong>Eezy peezy!</strong> Your document has been created.</p>
           </div>
-          <div id="create-document-error-container" class="col-xs-4 col-sm-4 alert alert-error">
+          <div id="create-document-error-container" class="col-xs-12 col-sm-12 alert alert-error">
             <p id="create-document-error">Failed. Try again.</p>
+          </div>
+          <div id="creation-report-container" class="col-xs-12 col-sm-12 alert alert-success not-shown">
+            <p>Document creation report:</p>
+            <p>Title: <span id="doc-title"></span></p>
+            <p>URL: <span id="doc-url"></span></p>
+            <p>Department(s): <span id="doc-departments"></span></p>
+            <p>Tags: <span id="doc-keywords"></span></p>
           </div>
         </div>
       </main>

@@ -12,13 +12,17 @@
   </head>
   <body>
     <div id="home-page-tia-container">
-      <img id="home-page-tia" src="/images/home-page-tia.png" />
+      <img id="home-page-tia" src="/images/home-page-tia.png" class=".img-responsive .center-block"/>
     </div>
-    <h1><%= welcomeMessage %></h1>
+    <h1 class="text-center"><%= welcomeMessage %></h1>
     <div id="sign-in-container" class="not-shown">
-      <p>You are not signed in. Please use any option below to sign in or register.</p>
+      <!--<div class="row">-->
+        <p class="alert alert-warning"><strong>You are not signed in. Please use any option below to sign in or register.</strong></p>        
+      </div>
       <div id="firebaseui-auth-container"></div>
+<!--
     </div>
+-->
     <div id="signed-in-container" class="not-shown">
       <p>Redirecting you to your dashboard. If this doesn't happen automatically, please <a href="/users">click here</a>.</p>
     
