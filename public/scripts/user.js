@@ -11,13 +11,7 @@ $(document).ready(function() {
   });
 
   $('#sign-out').on('click', function() {
-    firebase.auth().signOut()
-      .then(function() {
-        $('#sign-out-status').text('You have signed out.');
-      })
-      .catch(function(error) {
-        // An error happened.
-      });
+    firebase.auth().signOut();
   });
   
   $('#create-document').on('click', this, function(event) {
