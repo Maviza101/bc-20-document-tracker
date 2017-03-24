@@ -51,6 +51,15 @@ $(document).ready(function() {
   });
   
   function updateSearchResults(department, records, targetId) {
+    console.log(records);
+    var errorDisplay = $('#' + targetId + '-error');
+    if (records === null || records === undefined) {
+      errorDisplay.show();
+      return;
+    }
+    else {
+      errorDisplay.hide();
+    }
     var recordKeys = Object.keys(records);
     var resultsDestination = $('#' + targetId);
 
