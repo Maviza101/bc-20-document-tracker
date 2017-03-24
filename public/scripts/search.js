@@ -11,6 +11,10 @@ $(document).ready(function() {
       return;
     }
   });
+
+  $('#sign-out').on('click', function() {
+    firebase.auth().signOut();
+  });
   
   $('#search-department-btn').on('click', this, function() {
     var departmentInput = $('.single-department:radio:checked');
