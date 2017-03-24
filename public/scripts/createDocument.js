@@ -162,6 +162,7 @@ $(document).ready(function() {
       uid: userId,
       title: title,
       url: url,
+      departments: departmentList.join(', ');
       keywords: encodeURIComponent(keywordsList.join(','))
     };
     
@@ -187,7 +188,6 @@ $(document).ready(function() {
     });
     
     var titlesRef = targetDatabase.ref('titles/' + encodeURIComponent(title));
-    console.log(usersRef.push(data));
     usersRef.push(data)
       .then(function() {
         currentJobsCount++;
@@ -207,7 +207,6 @@ $(document).ready(function() {
   
   function showSuccessMsg(totalCount, currentCount) {
     if (totalCount === currentCount) {
-      console.log('completed');
       $('#create-document-btn').show();
       $('#create-document-success-container').show();
       invalidateCreateDocForm();
