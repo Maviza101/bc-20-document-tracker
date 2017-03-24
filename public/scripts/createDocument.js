@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 
 $(document).ready(function() {
   var firebase = initFirebase();
@@ -7,10 +7,15 @@ $(document).ready(function() {
   
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      $('body').show();
       currentUserId = user.uid;
     } else {
       window.location.replace('/');
     }
+  });
+
+  $('#sign-out').on('click', function() {
+    firebase.auth().signOut();
   });
   
   // Functions for validating the properties of each field of a new document.
@@ -25,6 +30,15 @@ $(document).ready(function() {
   }
   
   function isValidUrl(url) {
+    // Bug fixes for the regex from jQuery Validator.
+    if (/(\.){2,}/.test(url)) {
+      return false;
+      }
+    
+    if (/(\.)$/.test(url)) {
+      return false;
+    }
+    
     /*
       Use jQuery's trim() instead of the native trim() so to 
       support browsers that don't have the latter installed.
@@ -67,7 +81,7 @@ $(document).ready(function() {
   
   $('#create-document-btn').on('click', this, function() {
     var titleInput = $('#document-title');
-    var title = titleInput.val();
+    var title = titleInput.val().trim();
     if (!isValidTitle(title)) {
       titleInput.attr('style', 'outline: 2px solid #ff2222');
       $('#document-title-error').show();
@@ -136,9 +150,10 @@ $(document).ready(function() {
     createDocument(database, currentTimeMillis, currentUserId, title, url, departments, keywords.split(','));
   });
   
+  // TODO: Replace the one-line hack below.
+  var savedData = {};
+  
   function createDocument(targetDatabase, creationTime, userId, title, url, departmentList, keywordsList) {
-    //TODO: add a fail listener to the pushes.
-    
     // update user docs + update titles + update departments + update keywords.
     var totalJobsCount = 1 + 1 + departmentList.length + keywordsList.length;
     var currentJobsCount = 0;
@@ -148,8 +163,12 @@ $(document).ready(function() {
       uid: userId,
       title: title,
       url: url,
+      departments: departmentList.join(', '),
       keywords: encodeURIComponent(keywordsList.join(','))
     };
+    
+    savedData = data;
+    savedData.departments = departmentList.join(', ');
     
     for (var i = 0; i < departmentList.length; i++) {      
       var singleDepartment = departmentList[i];
@@ -170,11 +189,11 @@ $(document).ready(function() {
     });
     
     var titlesRef = targetDatabase.ref('titles/' + encodeURIComponent(title));
-    console.log(usersRef.push(data));
-    usersRef.push(data)
+    titlesRef.push(data)
       .then(function() {
         currentJobsCount++;
         showSuccessMsg(totalJobsCount, currentJobsCount);
+        console.log('got here');
     });
     
     for (var i = 0; i < keywordsList.length; i++) {
@@ -190,13 +209,21 @@ $(document).ready(function() {
   
   function showSuccessMsg(totalCount, currentCount) {
     if (totalCount === currentCount) {
-      console.log('completed');
       $('#create-document-btn').show();
       $('#create-document-success-container').show();
       invalidateCreateDocForm();
+      showCreationReport(savedData);
     } else {
       return;
     }
+  }
+  
+  function showCreationReport(obj) {
+    $('#creation-report-container').show();
+    $('#doc-title').text(obj.title);
+    $('#doc-url').text(obj.url);
+    $('#doc-deparments').text(obj.departments);
+    $('#doc-keywords').text(decodeURIComponent(obj.keywords));
   }
   
   function showErrorMsg() {

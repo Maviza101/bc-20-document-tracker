@@ -3,10 +3,10 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   var placeholderValues = {
-    pageTitle: 'Create Document',
-    welcomeMessage: 'Talk to the genie. He\'ll create a document for you.'
+    pageTitle: 'Search Documents',
+    welcomeMessage: 'Hello Genie. I need to find...'
   };
-  res.render('createDocument', placeholderValues);
+  res.render('search');
 });
 
 module.exports = router;
