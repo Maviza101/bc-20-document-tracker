@@ -7,6 +7,7 @@ $(document).ready(function() {
   
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      $('body').show();
       currentUserId = user.uid;
     } else {
       window.location.replace('/');

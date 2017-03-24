@@ -3,7 +3,7 @@ $(document).ready(function() {
   var firebase = initFirebase();
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      
+      $('body').show();
     }
     else {
       window.location.replace('/');

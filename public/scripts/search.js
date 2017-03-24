@@ -4,7 +4,7 @@ $(document).ready(function() {
   
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      
+      $('body').show();      
     } else {
       // Redirect non-signed in users to the homepage.
       window.location.replace('/');
