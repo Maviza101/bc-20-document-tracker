@@ -162,7 +162,7 @@ $(document).ready(function() {
       uid: userId,
       title: title,
       url: url,
-      departments: departmentList.join(', ');
+      departments: departmentList.join(', '),
       keywords: encodeURIComponent(keywordsList.join(','))
     };
     
@@ -188,10 +188,11 @@ $(document).ready(function() {
     });
     
     var titlesRef = targetDatabase.ref('titles/' + encodeURIComponent(title));
-    usersRef.push(data)
+    titlesRef.push(data)
       .then(function() {
         currentJobsCount++;
         showSuccessMsg(totalJobsCount, currentJobsCount);
+        console.log('got here');
     });
     
     for (var i = 0; i < keywordsList.length; i++) {
