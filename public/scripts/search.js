@@ -43,7 +43,6 @@ $(document).ready(function() {
     var title = titleInput.val().trim();
     
     var titleRef = database.ref('titles/' + title);
-    console.log(titleRef);
     titleRef.once('value', function(snapshot) {
       var databaseRecords = snapshot.val();
       updateSearchResults(title, databaseRecords, 'title-search-results-target');
@@ -51,7 +50,9 @@ $(document).ready(function() {
   });
   
   function updateSearchResults(department, records, targetId) {
-    console.log(records);
+    var resultsDestination = $('#' + targetId);
+    resultsDestination.empty();
+
     var errorDisplay = $('#' + targetId + '-error');
     if (records === null || records === undefined) {
       errorDisplay.show();
@@ -61,7 +62,6 @@ $(document).ready(function() {
       errorDisplay.hide();
     }
     var recordKeys = Object.keys(records);
-    var resultsDestination = $('#' + targetId);
 
     for (var i = 0; i < recordKeys.length; i++) {
       var key = recordKeys[i];
@@ -69,19 +69,19 @@ $(document).ready(function() {
       var row = $('<tr>');
 
       var titleCell = $('<td>');
-      titleCell.text(record.title);
+      titleCell.text(decodeURIComponent(record.title));
 
       var urlCell = $('<td>');
       var urlElement = $('<a>');
       urlElement.text('Link');
-      urlElement.attr('href', record.url);
+      urlElement.attr('href', decodeURIComponent(record.url));
       urlCell.append(urlElement);
 
       var departmentCell = $('<td>');
       departmentCell.text(department);
 
       var keywordsCell = $('<td>');
-      keywordsCell.text(record.keywords);
+      keywordsCell.text(decodeURIComponent(record.keywords));
 
       row.append(titleCell)
         .append(urlCell)
