@@ -11,4 +11,4 @@ npm install
 
 node app.js
 ```
-* That's all! NPM will install any required dependencies and run the project.
+* That's all! NPM will install any required dependencies and run the project. So open a browser and check it out the live app at `localhost:5000`.

@@ -21,11 +21,12 @@
   },
   "homepage": "https://github.com/Maviza101/document-tracker-cohort-20#readme",
   "dependencies": {
-    "ejs": "2.4.1",
-    "express": "4.13.3",
-    "firebase": "^3.7.2",
-    "firebaseui": "^1.0.0",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
+    "ejs": ">=2.5.5",
+    "express": "^4.16.4",
+    "firebase": "^5.10.1",
+    "firebaseui": "^3.6.0",
+    "morgan": ">=1.9.1",
+    "npm": "^6.9.0",
+    "serve-favicon": "^2.5.0"
   }
 }
